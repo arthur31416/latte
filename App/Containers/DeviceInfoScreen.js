@@ -1,5 +1,5 @@
 // An All Components Screen is a great way to dev and quick-test components
-import React, {PropTypes} from 'react'
+import React from 'react'
 import { View, ScrollView, Text, Image, NetInfo } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
 import { Metrics, Images } from '../Themes'
@@ -32,9 +32,6 @@ const APP_DATA = [
 ]
 
 export default class DeviceInfoScreen extends React.Component {
-  static propTypes = {
-  }
-
   constructor (props) {
     super(props)
 

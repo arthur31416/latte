@@ -62,5 +62,14 @@ export default () => {
   // run sagas
   sagaMiddleware.run(sagas)
 
+  // Hot reloading reducers is now explicit: https://github.com/reactjs/react-redux/releases/tag/v2.0.0
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('../Reducers', () => {
+      const nextRootReducer = require('../Reducers')
+      store.replaceReducer(nextRootReducer)
+    })
+  }
+
   return store
 }

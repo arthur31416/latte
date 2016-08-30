@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { View, ScrollView, Text, Image } from 'react-native'
 import { Colors, Fonts, Images } from '../Themes'
 import R from 'ramda'
@@ -18,9 +18,6 @@ export default class UsageExamplesScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
-  }
-
-  static propTypes = {
   }
 
   renderColor (color) {

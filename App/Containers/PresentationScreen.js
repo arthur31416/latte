@@ -2,8 +2,6 @@ import React, {PropTypes} from 'react'
 import { ScrollView, Text, Image, View, Linking } from 'react-native'
 import { Images } from '../Themes'
 import { connect } from 'react-redux'
-import RoundedButton from '../Components/RoundedButton'
-import { Actions as NavigationActions } from 'react-native-router-flux'
 
 import Actions from '../Actions/Creators'
 import auth from '../Config/Auth'
@@ -23,7 +21,7 @@ class PresentationScreen extends React.Component {
   }
 
   state = {
-    code: ""
+    code: ''
   }
 
   componentWillMount () {
@@ -33,7 +31,7 @@ class PresentationScreen extends React.Component {
       this.setState({
         code: query.code
       })
-      authenticate(query);
+      authenticate(query)
     })
   }
 
@@ -47,9 +45,9 @@ class PresentationScreen extends React.Component {
 
     Linking.addEventListener('url', handleUrl)
 
-    function handleUrl(event) {
-      const [, query_string] = event.url.match(/\?(.*)/)
-      const query = qs(query_string)
+    function handleUrl (event) {
+      const [, queryString] = event.url.match(/\?(.*)/)
+      const query = qs(queryString)
       cb(query)
       Linking.removeEventListener('url', handleUrl)
     }
@@ -64,7 +62,7 @@ class PresentationScreen extends React.Component {
         <ScrollView style={styles.container}>
           <View style={styles.section} >
             <Text style={styles.sectionText} >
-              Hello Kitty. Code is { code }
+              Hello Kitty. Code is {code}
             </Text>
           </View>
         </ScrollView>
