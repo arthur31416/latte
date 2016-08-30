@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import RoundedButton from '../Components/RoundedButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
+import Actions from '../Actions/Creators'
 import auth from '../Config/Auth'
 import qs from 'shitty-qs'
 
@@ -26,11 +27,13 @@ class PresentationScreen extends React.Component {
   }
 
   componentWillMount () {
+    const { authenticate } = this.props
+
     this.slackAuth(auth, query => {
-      console.log("query", query)
       this.setState({
         code: query.code
       })
+      authenticate(query);
     })
   }
 
@@ -53,13 +56,15 @@ class PresentationScreen extends React.Component {
   }
 
   render () {
+    const { code } = this.props.authentification
+
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
           <View style={styles.section} >
             <Text style={styles.sectionText} >
-              Hello Kitty
+              Hello Kitty. Code is { code }
             </Text>
           </View>
         </ScrollView>
@@ -68,18 +73,13 @@ class PresentationScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-  }
-}
+const mapStateToProps = ({ authentification }) => ({
+  authentification
+})
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    componentExamples: NavigationActions.componentExamples,
-    usageExamples: NavigationActions.usageExamples,
-    apiTesting: NavigationActions.apiTesting,
-    theme: NavigationActions.theme,
-    deviceInfo: NavigationActions.deviceInfo
+    authenticate: query => dispatch(Actions.authenticate(query))
   }
 }
 
