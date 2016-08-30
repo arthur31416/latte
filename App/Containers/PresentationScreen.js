@@ -49,24 +49,26 @@ class PresentationScreen extends React.Component {
   getToken = query => {
     // const { authenticate } = this.props
 
-    Linking.openURL([
+    const url = [
       'https://slack.com/api/oauth.access',
       '?client_id=' + auth.client_id,
-      '?client_secret=' + auth.client_secret,
-      '&code=' + query.scope
-    ].join(''))
+      '&client_secret=' + auth.client_secret,
+      '&code=' + query.code
+    ].join('')
+
+    fetch(url)
+      .then(res => res.json())
+      .then(resJson => console.log(resJson))
   }
 
   render () {
-    const { code } = this.props.authentification
-
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
           <View style={styles.section} >
             <Text style={styles.sectionText} >
-              Hello Kitty. Code is {code}
+              Hello Kitty.
             </Text>
           </View>
         </ScrollView>
