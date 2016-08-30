@@ -12,6 +12,10 @@
 #import "RCTBundleURLProvider.h"
 #import "RCTRootView.h"
 
+// http://facebook.github.io/react-native/docs/linking-libraries-ios.html
+// http://stackoverflow.com/questions/31860715/rct-linking-manager-file-not-found
+#import "RCTLinkingManager.h"
+
 @implementation AppDelegate
 
 // OAuth2 support
