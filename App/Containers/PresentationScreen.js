@@ -25,14 +25,7 @@ class PresentationScreen extends React.Component {
   }
 
   componentWillMount () {
-    const { authenticate } = this.props
-
-    this.slackAuth(auth, query => {
-      this.setState({
-        code: query.code
-      })
-      authenticate(query)
-    })
+    this.slackAuth(auth, this.getToken)
   }
 
   slackAuth = (auth, cb) => {
@@ -51,6 +44,17 @@ class PresentationScreen extends React.Component {
       cb(query)
       Linking.removeEventListener('url', handleUrl)
     }
+  }
+
+  getToken = query => {
+    // const { authenticate } = this.props
+
+    Linking.openURL([
+      'https://slack.com/api/oauth.access',
+      '?client_id=' + auth.client_id,
+      '?client_secret=' + auth.client_secret,
+      '&code=' + query.scope
+    ].join(''))
   }
 
   render () {
