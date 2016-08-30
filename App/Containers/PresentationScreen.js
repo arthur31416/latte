@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 import Actions from '../Actions/Creators'
 import auth from '../Config/Auth'
+import authService from '../Services/Auth'
 import qs from 'shitty-qs'
 
 // Styles
@@ -25,7 +26,7 @@ class PresentationScreen extends React.Component {
   }
 
   componentWillMount () {
-    this.slackAuth(auth, this.getToken)
+    this.slackAuth(auth, query => authService.getToken(auth, query.code))
   }
 
   slackAuth = (auth, cb) => {
@@ -44,21 +45,6 @@ class PresentationScreen extends React.Component {
       cb(query)
       Linking.removeEventListener('url', handleUrl)
     }
-  }
-
-  getToken = query => {
-    // const { authenticate } = this.props
-
-    const url = [
-      'https://slack.com/api/oauth.access',
-      '?client_id=' + auth.client_id,
-      '&client_secret=' + auth.client_secret,
-      '&code=' + query.code
-    ].join('')
-
-    fetch(url)
-      .then(res => res.json())
-      .then(resJson => console.log(resJson))
   }
 
   render () {
