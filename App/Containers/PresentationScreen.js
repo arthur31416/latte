@@ -12,9 +12,13 @@ import qs from 'shitty-qs'
 import styles from './Styles/PresentationScreenStyle'
 
 class PresentationScreen extends React.Component {
-
   static propTypes = {
     authenticate: PropTypes.func.isRequired
+  }
+
+  state = {
+    userId: null,
+    teamName: null
   }
 
   componentWillMount () {
@@ -23,6 +27,12 @@ class PresentationScreen extends React.Component {
     this.slackAuth(auth, query => {
       authService.getToken(auth, query.code)
         .then(authenticate)
+        .then(({ infos }) => {
+          this.setState({
+            userId: infos.user_id,
+            teamName: infos.team_name
+          })
+        })
     })
   }
 
@@ -45,13 +55,33 @@ class PresentationScreen extends React.Component {
   }
 
   render () {
+    const { userId, teamName } = this.state
+
+    if (!userId) {
+      return (
+        <View style={styles.mainContainer}>
+          <Text style={styles.sectionText}>
+            Loading...
+          </Text>
+        </View>
+      )
+    }
+
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
-          <View style={styles.section} >
-            <Text style={styles.sectionText} >
+          <View style={styles.section}>
+            <Text style={styles.sectionText}>
               Hello Kitty.
+            </Text>
+
+            <Text style={styles.sectionText}>
+              user_id: {userId}
+            </Text>
+
+            <Text style={styles.sectionText}>
+              team_name: {teamName}
             </Text>
           </View>
         </ScrollView>
