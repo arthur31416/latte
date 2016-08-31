@@ -3,15 +3,14 @@ import Immutable from 'seamless-immutable'
 import { createReducer } from 'reduxsauce'
 
 export const INITIAL_STATE = Immutable({
-  code: null,
-  state: null
+  infos: null
 })
 
-const authenticate = (state, action) =>
-  state.merge({
-    code: action.code,
-    state: action.state
+const authenticate = (state, action) => {
+  return state.merge({
+    infos: action.infos
   })
+}
 
 // map our types to our handlers
 const ACTION_HANDLERS = {

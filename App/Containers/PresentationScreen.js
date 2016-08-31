@@ -14,19 +14,16 @@ import styles from './Styles/PresentationScreenStyle'
 class PresentationScreen extends React.Component {
 
   static propTypes = {
-    componentExamples: PropTypes.func,
-    usageExamples: PropTypes.func,
-    apiTesting: PropTypes.func,
-    theme: PropTypes.func,
-    deviceInfo: PropTypes.func
-  }
-
-  state = {
-    code: ''
+    authenticate: PropTypes.func.isRequired
   }
 
   componentWillMount () {
-    this.slackAuth(auth, query => authService.getToken(auth, query.code))
+    const { authenticate } = this.props
+
+    this.slackAuth(auth, query => {
+      authService.getToken(auth, query.code)
+        .then(authenticate)
+    })
   }
 
   slackAuth = (auth, cb) => {
@@ -67,10 +64,8 @@ const mapStateToProps = ({ authentification }) => ({
   authentification
 })
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    authenticate: query => dispatch(Actions.authenticate(query))
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  authenticate: infos => dispatch(Actions.authenticate(infos))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(PresentationScreen)
