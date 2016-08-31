@@ -9,9 +9,5 @@ export default {
 
     return fetch(url)
       .then(res => res.json())
-      .then(resJson => {
-        console.log('authService', resJson)
-        return resJson
-      })
   }
 }

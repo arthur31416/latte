@@ -7,5 +7,11 @@ export default StyleSheet.create({
     marginLeft: Metrics.baseMargin,
     backgroundColor: Colors.transparent,
     width: Metrics.icons.medium
+  },
+  navButtonRight: {
+    // marginTop: Metrics.doubleBaseMargin,
+    // marginRight: Metrics.baseMargin,
+    backgroundColor: Colors.transparent,
+    width: Metrics.icons.medium
   }
 })

@@ -2,33 +2,26 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import styles from './Styles/NavItemsStyle'
 import { Actions as NavigationActions } from 'react-native-router-flux'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/Ionicons'
 import { Colors, Metrics } from '../Themes'
 
-const toggleDrawer = () => {
-  NavigationActions.refresh({
-    key: 'drawer',
-    open: value => !value
-  })
-}
-
 export default {
-  backButton () {
+  addButton () {
     return (
-      <TouchableOpacity onPress={NavigationActions.pop}>
-        <Icon name='angle-left'
+      <TouchableOpacity onPress={NavigationActions.addMessage}>
+        <Icon name='ios-add'
           size={Metrics.icons.medium}
           color={Colors.snow}
-          style={styles.navButtonLeft}
+          style={styles.navButtonRight}
         />
       </TouchableOpacity>
     )
   },
 
-  hamburgerButton () {
+  backButton () {
     return (
-      <TouchableOpacity onPress={toggleDrawer}>
-        <Icon name='bars'
+      <TouchableOpacity onPress={NavigationActions.pop}>
+        <Icon name='ion-ios-arrow-back'
           size={Metrics.icons.medium}
           color={Colors.snow}
           style={styles.navButtonLeft}
@@ -36,5 +29,4 @@ export default {
       </TouchableOpacity>
     )
   }
-
 }

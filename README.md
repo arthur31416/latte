@@ -3,7 +3,7 @@
 ## Prerequisites
 Only tested on iOS at the moment.
 
-First you need to [install React Native](https://facebook.github.io/react-native/docs/getting-started.html#content)
+First you need to [install React Native](https://facebook.github.io/react-native/docs/getting-started.html#content) and then install dependencies:
 
 ```
 npm install

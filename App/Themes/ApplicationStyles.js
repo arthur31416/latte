@@ -10,7 +10,7 @@ const ApplicationStyles = {
     mainContainer: {
       flex: 1,
       marginTop: Metrics.navBarHeight,
-      backgroundColor: Colors.transparent
+      backgroundColor: Colors.silver
     },
     backgroundImage: {
       position: 'absolute',
@@ -26,13 +26,17 @@ const ApplicationStyles = {
     section: {
       margin: Metrics.section,
       padding: Metrics.baseMargin,
-      borderTopColor: Colors.frost,
-      borderTopWidth: 0.5,
-      borderBottomColor: Colors.frost,
-      borderBottomWidth: 1
+      backgroundColor: Colors.snow,
+      borderRadius: Metrics.sectionRadius,
+      borderColor: Colors.frost,
+      borderWidth: 1
+      // borderTopColor: Colors.frost,
+      // borderTopWidth: 0.5,
+      // borderBottomColor: Colors.frost,
+      // borderBottomWidth: 1
     },
     sectionText: {
-      color: Colors.snow,
+      color: Colors.coal,
       marginVertical: Metrics.smallMargin,
       textAlign: 'center',
       fontWeight: 'bold'
