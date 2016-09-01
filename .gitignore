@@ -42,4 +42,4 @@ android/keystores/debug.keystore
 
 # Added by Arthur
 App/Config/Auth.js
-App/fastlane/
+fastlane/
