@@ -26,7 +26,8 @@ const ApplicationStyles = {
     },
     container: {
       flex: 1,
-      paddingTop: Metrics.baseMargin
+      paddingTop: Metrics.baseMargin,
+      backgroundColor: Colors.silver
     },
     section: {
       margin: Metrics.section,
@@ -45,7 +46,7 @@ const ApplicationStyles = {
       fontWeight: 'bold'
     },
     subtitle: {
-      color: Colors.snow,
+      color: Colors.windowTint,
       padding: Metrics.smallMargin,
       marginBottom: Metrics.smallMargin,
       marginHorizontal: Metrics.smallMargin

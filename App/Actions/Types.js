@@ -15,4 +15,6 @@ export default createTypes(`
   TEMPERATURE_FAILURE
 
   AUTHENTICATE
+
+  ADD_MESSAGE
 `)

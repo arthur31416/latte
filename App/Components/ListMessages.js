@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
 import { View, Text } from 'react-native'
+
+import { Colors, Metrics } from '../Themes/'
 import styles from './Styles/ListMessagesStyle'
 
 export default class ListMessages extends React.Component {
@@ -11,23 +13,50 @@ export default class ListMessages extends React.Component {
 
   render () {
     const { messages } = this.props
+    const now = Math.round(Date.now() / 100)
 
     return (
-      <View style={styles.container}>
+      <View style={styles.mainContainer}>
         {
-          messages.map((mess, index) => (
-            <View
-              key={mess.id}
-              style={
-                index === 0 ? styles.messageTop : styles.messageBottom
-              }>
-              <Text style={styles.secionText}>
-                {mess.label}
-              </Text>
-            </View>
-          ))
+          messages
+            .asMutable()
+            .sort((a, b) => a.sendAt - b.sendAt)
+            .map((mess, index) => {
+              const past = mess.sendAt < now
+
+              return (
+                <View
+                  key={mess.createdAt}
+                  style={{
+                    ...customStyles.message,
+                    backgroundColor: past ? Colors.frost : Colors.snow,
+                    borderTopWidth: index === 0 ? 1 : 0
+                  }}>
+                  <Text style={styles.sectionText}>
+                    {mess.label}
+
+                    <Text style={styles.subtitle}>
+                      ({mess.sendAt})
+                    </Text>
+                  </Text>
+                </View>
+              )
+            })
         }
       </View>
     )
+  }
+}
+
+const customStyles = {
+  message: {
+    paddingTop: Metrics.doublePaddingVertical,
+    paddingBottom: Metrics.doublePaddingVertical,
+    paddingLeft: Metrics.basePaddingHorizontal,
+    paddingRight: Metrics.basePaddingHorizontal,
+    margin: 0,
+    backgroundColor: Colors.snow,
+    borderBottomWidth: 1,
+    borderColor: Colors.frost
   }
 }

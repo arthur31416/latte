@@ -14,27 +14,6 @@ import styles from './Styles/PresentationScreenStyle'
 
 const DEBUGGING = true
 
-const fakeMessages = [
-  {
-    id: 0,
-    label: 'Sorry I won\'t be able to make it because, well, I\'m sick',
-    createdAt: 1472653546,
-    sendAt: 1472689590
-  },
-  {
-    id: 1,
-    label: 'I\'ll be there when I\'ll be there',
-    createdAt: 1472653336,
-    sendAt: 1472689290
-  },
-  {
-    id: 2,
-    label: 'Don\'t wait for me, kiddos',
-    createdAt: 1472653246,
-    sendAt: 1472698510
-  }
-]
-
 class PresentationScreen extends React.Component {
   static propTypes = {
     authenticate: PropTypes.func.isRequired
@@ -81,6 +60,7 @@ class PresentationScreen extends React.Component {
   }
 
   render () {
+    const { messages } = this.props
     const { userId, teamName } = this.state
 
     if (!DEBUGGING && !userId) {
@@ -110,15 +90,16 @@ class PresentationScreen extends React.Component {
             </Text>
           </View>
 
-          <ListMessages messages={fakeMessages} />
+          <ListMessages messages={messages} />
         </ScrollView>
       </View>
     )
   }
 }
 
-const mapStateToProps = ({ authentification }) => ({
-  authentification
+const mapStateToProps = ({ authentification, messages }) => ({
+  authentification,
+  messages
 })
 
 const mapDispatchToProps = dispatch => ({

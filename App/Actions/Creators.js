@@ -18,6 +18,8 @@ const receiveTemperature = (temperature) => ({ type: Types.TEMPERATURE_RECEIVE, 
 const receiveTemperatureFailure = () => ({ type: Types.TEMPERATURE_FAILURE })
 const authenticate = infos => ({ type: Types.AUTHENTICATE, infos })
 
+const addMessage = message => ({ type: Types.ADD_MESSAGE, message })
+
 /**
  Makes available all the action creators we've created.
  */
@@ -30,5 +32,6 @@ export default {
   requestTemperature,
   receiveTemperature,
   receiveTemperatureFailure,
-  authenticate
+  authenticate,
+  addMessage
 }

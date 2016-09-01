@@ -17,7 +17,7 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='modal' component={Modal}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonIconStyle={Styles.rightButton}>
-            <Scene initial key='presentationScreen' component={PresentationScreen} title='Latte' renderRightButton={NavItems.addButton} onRight={() => window.alert('Example Pressed')} />
+            <Scene initial key='presentationScreen' component={PresentationScreen} title='Latte' renderRightButton={NavItems.addButton} />
             <Scene key='addMessage' direction='vertical' component={AddMessage} title='Add Message' />
           </Scene>
         </Scene>
