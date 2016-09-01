@@ -2,6 +2,8 @@ import React, {PropTypes} from 'react'
 import { ScrollView, Text, View, Linking } from 'react-native'
 import { connect } from 'react-redux'
 
+import ListMessages from '../Components/ListMessages'
+
 import Actions from '../Actions/Creators'
 import auth from '../Config/Auth'
 import authService from '../Services/Auth'
@@ -10,26 +12,28 @@ import qs from 'shitty-qs'
 // Styles
 import styles from './Styles/PresentationScreenStyle'
 
-// const fakeMessages = [
-//   {
-//     id: 0,
-//     label: 'Sorry I won\'t be able to make it because, well, I\'m sick',
-//     createdAt: 1472653546,
-//     sendAt: 1472689590
-//   },
-//   {
-//     id: 1,
-//     label: 'I\'ll be there when I\'ll be there',
-//     createdAt: 1472653336,
-//     sendAt: 1472689290
-//   },
-//   {
-//     id: 2,
-//     label: 'Don\'t wait for me, kiddos',
-//     createdAt: 1472653246,
-//     sendAt: 1472698510
-//   }
-// ]
+const DEBUGGING = true
+
+const fakeMessages = [
+  {
+    id: 0,
+    label: 'Sorry I won\'t be able to make it because, well, I\'m sick',
+    createdAt: 1472653546,
+    sendAt: 1472689590
+  },
+  {
+    id: 1,
+    label: 'I\'ll be there when I\'ll be there',
+    createdAt: 1472653336,
+    sendAt: 1472689290
+  },
+  {
+    id: 2,
+    label: 'Don\'t wait for me, kiddos',
+    createdAt: 1472653246,
+    sendAt: 1472698510
+  }
+]
 
 class PresentationScreen extends React.Component {
   static propTypes = {
@@ -44,16 +48,18 @@ class PresentationScreen extends React.Component {
   componentWillMount () {
     const { authenticate } = this.props
 
-    this.slackAuth(auth, query => {
-      authService.getToken(auth, query.code)
-        .then(authenticate)
-        .then(({ infos }) => {
-          this.setState({
-            userId: infos.user_id,
-            teamName: infos.team_name
+    if (!DEBUGGING) {
+      this.slackAuth(auth, query => {
+        authService.getToken(auth, query.code)
+          .then(authenticate)
+          .then(({ infos }) => {
+            this.setState({
+              userId: infos.user_id,
+              teamName: infos.team_name
+            })
           })
-        })
-    })
+      })
+    }
   }
 
   slackAuth = (auth, cb) => {
@@ -77,9 +83,9 @@ class PresentationScreen extends React.Component {
   render () {
     const { userId, teamName } = this.state
 
-    if (!userId) {
+    if (!DEBUGGING && !userId) {
       return (
-        <View style={styles.mainContainer}>
+        <View style={styles.centeredContainer}>
           <Text style={styles.sectionText}>
             Loading...
           </Text>
@@ -104,11 +110,7 @@ class PresentationScreen extends React.Component {
             </Text>
           </View>
 
-          <View style={styles.section}>
-            <Text style={styles.sectionText}>
-              Stuff
-            </Text>
-          </View>
+          <ListMessages messages={fakeMessages} />
         </ScrollView>
       </View>
     )

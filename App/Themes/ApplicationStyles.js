@@ -12,6 +12,11 @@ const ApplicationStyles = {
       marginTop: Metrics.navBarHeight,
       backgroundColor: Colors.silver
     },
+    centeredContainer: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
     backgroundImage: {
       position: 'absolute',
       top: 0,
@@ -25,20 +30,18 @@ const ApplicationStyles = {
     },
     section: {
       margin: Metrics.section,
-      padding: Metrics.baseMargin,
+      paddingTop: Metrics.basePaddingVertical,
+      paddingBottom: Metrics.basePaddingVertical,
+      paddingLeft: Metrics.basePaddingHorizontal,
+      paddingRight: Metrics.basePaddingHorizontal,
       backgroundColor: Colors.snow,
       borderRadius: Metrics.sectionRadius,
       borderColor: Colors.frost,
       borderWidth: 1
-      // borderTopColor: Colors.frost,
-      // borderTopWidth: 0.5,
-      // borderBottomColor: Colors.frost,
-      // borderBottomWidth: 1
     },
     sectionText: {
       color: Colors.coal,
       marginVertical: Metrics.smallMargin,
-      textAlign: 'center',
       fontWeight: 'bold'
     },
     subtitle: {
